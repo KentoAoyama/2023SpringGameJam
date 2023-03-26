@@ -15,12 +15,12 @@ public class CameraController : MonoBehaviour
 
     Ray ray;
     RaycastHit hit;
-    float rayLength = Mathf.Infinity;
+    float rayLength = 100f;
 
 
     private void Awake()
     {
-        cameraPoints[0].Priority = 1;
+        //cameraPoints[0].Priority = 1;
         //gameManager.ChangeCameraUI(0);
     }
     public void ChangeCamera()
@@ -91,7 +91,9 @@ public class CameraController : MonoBehaviour
                 //è’ìÀèàóù
                 manipulateLineRenderer.SetPosition(1, hit.point);
                 //lineRenderer.SetPosition(1, ray.origin + ray.direction * 100);
-                Debug.Log("Fire");
+
+                var enemy = hit.collider.GetComponent<Enemy>();
+                enemy.EnemyBom();
             }
         }
     }

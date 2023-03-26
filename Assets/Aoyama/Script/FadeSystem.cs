@@ -7,10 +7,12 @@ using UnityEngine.SceneManagement;
 public class FadeSystem : MonoBehaviour
 {
     [Tooltip("フェードに使うImage")]
-    [SerializeField] Image _fadeImage;
+    [SerializeField] 
+    private Graphic _fadeImage; 
 
     [Tooltip("フェードにかける時間")]
-    [SerializeField] float _fadeTime = 3f;
+    [SerializeField] 
+    private float _fadeTime = 3f;
 
 
     void Awake()

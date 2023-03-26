@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
     private UIController _uiController;
 
     [SerializeField]
+    private CinemachineVirtualCamera _cinemachine;
+
+    [SerializeField]
     private string _finishText = "終了！";
 
     /// <summary>
@@ -84,7 +87,7 @@ public class GameManager : MonoBehaviour
             case InGameState.Title:
                 if (Input.GetMouseButtonDown(1)) //ボタンを押したらゲーム開始（仮）
                 {
-                    GameStart();
+                    StartCoroutine(GameStart());
                 }
 
                 break;
@@ -133,9 +136,12 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// GameをStartする際に実行する処理
     /// </summary>
-    private void GameStart()
+    private IEnumerator GameStart()
     {
-        _uiController.GameStart();
+        _cinemachine.Priority = -1;
+
+        yield return _uiController.GameStart();
+
         ChangeState(InGameState.InGame_Morning);
     }
 
@@ -168,20 +174,19 @@ public class GameManager : MonoBehaviour
             _uiController.ChangeTimeText(24);
         }
 
-        _uiController.ChangeScoreText(_score.Score);
+        _uiController.ChangeScoreText();
     }
 
     private void ChangeState(InGameState state)
     {
         _timer.ResetTime();
         _state = state;
-
-        Debug.Log("InGameStateが" + state + "に変更されました");
     }
 
     public void AddScore(int score = 1)
     {
         _score.AddScore(score);
+        _uiController.ChangeScore(score);
     }
 
     /// <summary>

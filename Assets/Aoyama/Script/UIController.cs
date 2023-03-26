@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using DG.Tweening;
 
 public class UIController : MonoBehaviour
 {
@@ -16,7 +17,20 @@ public class UIController : MonoBehaviour
     [SerializeField]
     private Text _helpText;
 
+    [SerializeField]
+    private float _titleAnimationDuration = 1f;
+
+    [SerializeField]
+    private float _titleFadeDuration = 1f;
+
+    [SerializeField]
+    private Ease _titleLogoEase;
+
     [Header("インゲームで使用するもの")]
+
+    [SerializeField]
+    private GameObject _ui;
+
     [SerializeField]
     private Slider _timeSlider;
 
@@ -38,15 +52,15 @@ public class UIController : MonoBehaviour
 
     private int _beforeChangeCamera = 0;
 
+    private float _score;
+
     public void Initialize()
     {
         if (_camera.Length != 0)
         _camera.ToList().ForEach(c => c.gameObject.SetActive(false));
 
-        _timeSlider.value = 0f;
-        _timeText.text = "";
-        _scoreText.text = "";
         _finishText.text = "";
+        _ui.SetActive(false);
     }
 
     /// <summary>
@@ -54,26 +68,35 @@ public class UIController : MonoBehaviour
     /// </summary>
     public IEnumerator SceneStart()
     {
-        _titleLogo.gameObject.SetActive(true);
-        _titleText.gameObject.SetActive(true);
-        _helpText.gameObject.SetActive(true);
+        Sequence sequence = DOTween.Sequence();
 
-        //仮置き　DoTweenと併用する予定
-        yield return new WaitForSeconds(0f);
+        yield return sequence
+            .Insert(0f, _titleLogo.rectTransform.DOScale(0f, 0f))
+            .Insert(0f, _titleText.rectTransform.DOScale(0f, 0f))
+            .Insert(0f, _helpText.rectTransform.DOScale(0f, 0f))
+            .Insert(_titleAnimationDuration, _titleLogo.rectTransform.DOScale(1f, _titleAnimationDuration).SetEase(_titleLogoEase))
+            .Insert(_titleAnimationDuration, _titleText.rectTransform.DOScale(1f, _titleAnimationDuration).SetEase(_titleLogoEase))
+            .Insert(_titleAnimationDuration, _helpText.rectTransform.DOScale(1f, _titleAnimationDuration).SetEase(_titleLogoEase))
+            .WaitForCompletion();
     }
 
     /// <summary>
     /// ゲームの開始時に行う処理
     /// </summary>
-    public void GameStart()
+    public IEnumerator GameStart()
     {
-        //ここにカメラを変更する処理を書く
+        Sequence sequence = DOTween.Sequence();
 
+        sequence
+            .Insert(0f, _titleLogo.DOFade(0f, _titleFadeDuration))
+            .Insert(0f, _titleText.DOFade(0f, _titleFadeDuration))
+            .Insert(0f, _helpText.DOFade(0f, _titleFadeDuration));
 
+        yield return new WaitForSeconds(1f);
 
-        _titleLogo.gameObject?.SetActive(false);
-        _titleText.gameObject?.SetActive(false);
-        _helpText.gameObject?.SetActive(false);
+        _ui.SetActive(true);
+
+        ChangeScore(0f);
     }
 
     public void ChangeTimeSlider(float value)
@@ -86,9 +109,23 @@ public class UIController : MonoBehaviour
         _timeText.text = $"{time:00}";
     }
 
-    public void ChangeScoreText(float score)
+    public void ChangeScoreText()
     {
-        _scoreText.text = score.ToString("0000");
+        _scoreText.text = _score.ToString("0000");
+    }
+
+    /// <summary>
+    /// スコアが変わった際に呼びだすメソッド
+    /// </summary>
+    public void ChangeScore(float addScore)
+    {
+        float endValue = _score + addScore;
+
+        DOTween.To(
+            () => _score,
+            (s) => _score = s,
+            endValue,
+            1f);
     }
 
     /// <summary>
