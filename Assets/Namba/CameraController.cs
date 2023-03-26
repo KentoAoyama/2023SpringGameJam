@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField] List<CinemachineVirtualCamera> cameraPoints = new List<CinemachineVirtualCamera>();
-    //[SerializeField] GameManager gameManager;
+    [SerializeField] GameManager gameManager;
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] List<LineRenderer> lineRenderers;
     [SerializeField] float nonVisibleTime;
@@ -29,25 +29,25 @@ public class CameraController : MonoBehaviour
         {
             ResetPriority();
             cameraPoints[0].Priority = 10;
-            //gameManager.ChangeCameraUI(0);
+            gameManager?.ChangeCameraUI(0);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             ResetPriority();
             cameraPoints[1].Priority = 10;
-            // gameManager.ChangeCameraUI(1);
+            gameManager?.ChangeCameraUI(1);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             ResetPriority();
             cameraPoints[2].Priority = 10;
-            //gameManager.ChangeCameraUI(2);
+            gameManager?.ChangeCameraUI(2);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             ResetPriority();
             cameraPoints[3].Priority = 10;
-            // gameManager.ChangeCameraUI(3);
+            gameManager?.ChangeCameraUI(3);
         }
     }
 
@@ -90,7 +90,6 @@ public class CameraController : MonoBehaviour
             {
                 //è’ìÀèàóù
                 manipulateLineRenderer.SetPosition(1, hit.point);
-                //lineRenderer.SetPosition(1, ray.origin + ray.direction * 100);
 
                 var enemy = hit.collider.GetComponent<Enemy>();
                 enemy.EnemyBom();
@@ -102,6 +101,5 @@ public class CameraController : MonoBehaviour
     {
         yield return new WaitForSeconds(nonVisibleTime);
         lineRenderer.enabled = false;
-
     }
 }
