@@ -54,6 +54,7 @@ public class Enemy : MonoBehaviour
     {   
         gameObject.layer = 7;
         _effect.Play();
+        SoundManager.Instance.Play(1, 1);
         _rb.AddExplosionForce(_bomForce, gameObject.transform.position, _bomRadius, _bomUpwards, ForceMode.Impulse);
         gameObject.SetActive(false);
     }
