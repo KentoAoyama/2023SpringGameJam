@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -196,5 +197,10 @@ public class GameManager : MonoBehaviour
     public void ChangeCameraUI(int cameraNum)
     {
         _uiController.ChangeCameraUINum(cameraNum);
+    }
+
+    private void OnDisable()
+    {
+        DOTween.KillAll();
     }
 }
