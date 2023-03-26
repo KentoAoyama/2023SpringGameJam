@@ -27,6 +27,7 @@ public class EnemySpooner : MonoBehaviour
 
     void Start()
     {
+        SoundManager.Instance.Play(0, 0);
         for (var i = 0; i < _enemyPopWeight.Length; i++)
         {
             _totalWeight += _enemyPopWeight[i];
