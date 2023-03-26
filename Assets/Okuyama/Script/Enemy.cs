@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     private GameManager _gameManager = null;
     private Rigidbody _rb = default;
     private int _subtraction = 0;
+    private ParticleSystem _myPS = null;
 
     public EnemySpooner EnemySpooner { get => _enemySpooner; set => _enemySpooner = value; }
     public GameManager GameManager { get => _gameManager; set => _gameManager = value; }
@@ -44,7 +45,9 @@ public class Enemy : MonoBehaviour
 
     public void EnemyBom()
     {
-        if(this.gameObject.CompareTag("DarkEnemy")) { GameManager.AddScore(); }
+        _myPS = Instantiate(_effect,gameObject.transform);
+        _myPS.gameObject.transform.parent = null;
+        if (this.gameObject.CompareTag("DarkEnemy")) { GameManager.AddScore(); }
         else { GameManager.AddScore(_subtraction); }
         Explosion();
         EnemySpooner.EnemyCount--;
@@ -53,9 +56,14 @@ public class Enemy : MonoBehaviour
     private void Explosion()
     {   
         gameObject.layer = 7;
-        _effect.Play();
+        _myPS.Play();
         SoundManager.Instance.Play(1, 1);
         _rb.AddExplosionForce(_bomForce, gameObject.transform.position, _bomRadius, _bomUpwards, ForceMode.Impulse);
+        StartCoroutine(destroy());
+    }
+    IEnumerator destroy()
+    {
+        yield return new WaitForSeconds(3);
         gameObject.SetActive(false);
     }
 }
