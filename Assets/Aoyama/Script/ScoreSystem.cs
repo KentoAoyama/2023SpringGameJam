@@ -5,8 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class ScoreSystem
 {
-    private float _score = 0f;
+    private static float _score = 0f;
     public float Score => _score;
+
 
     public void Initialize()
     {

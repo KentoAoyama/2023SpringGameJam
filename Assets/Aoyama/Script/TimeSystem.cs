@@ -14,9 +14,15 @@ public class TimeSystem
     [SerializeField]
     private float _nightTime = 20f;
 
+    [SerializeField]
+    private float _finishInterval = 3f;
+
     [Header("デバッグ用")]
     [SerializeField]
     private float _time = 0f;
+
+    [SerializeField]
+    private float _currentAllTime = 0f; 
 
     /// <summary>
     /// 朝の時間のプロパティ
@@ -33,15 +39,36 @@ public class TimeSystem
     /// </summary>
     public float NightTime => _nightTime;
 
-    public void Initialize()
+    /// <summary>
+    /// ゲーム終了後にリザルトに飛ぶまでの時間
+    /// </summary>
+    public float FinishInterval => _finishInterval;
+
+    /// <summary>
+    /// ゲームの合計時間のプロパティ
+    /// </summary>
+    public float AllTime => _morningTime + _noonTime + _nightTime;
+
+    /// <summary>
+    /// 時間帯ごとの経過時間のプロパティ
+    /// </summary>
+    public float CurrentTime => _time;
+
+    /// <summary>
+    /// ゲームの経過時間のプロパティ
+    /// </summary>
+    public float CurrentAllTime => _currentAllTime;
+
+    public void ResetTime()
     {
         _time = 0f;
     }
 
     public void AddTime()
     {
-        _time += Time.deltaTime;
+        var deltaTime = Time.deltaTime;
 
-
+        _time += deltaTime;
+        _currentAllTime += deltaTime;
     }
 }
