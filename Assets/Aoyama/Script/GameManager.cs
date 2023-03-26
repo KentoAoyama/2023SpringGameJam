@@ -30,19 +30,43 @@ public class GameManager : MonoBehaviour
 
     private InGameState _state;
 
+    /// <summary>
+    /// ÉQÅ[ÉÄÇÃèÛë‘Çï\Ç∑óÒãìå^
+    /// </summary>
+    public InGameState State => _state;
+
     void Start()
     {
         _state = InGameState.Title;
-        _fade.StartFadeIn();
+        if (_fade) _fade.StartFadeIn();
     }
-    
+
     void Update()
     {
-        
+        if (_state == InGameState.InGame)
+        {
+            _timer.AddTime();
+        }
+
+        switch(_state)
+        {
+            case InGameState.Title:
+
+                break;
+            case InGameState.InGame_Morning:
+
+                break;
+            case InGameState.InGame_Noon:
+
+                break;
+            case InGameState.InGame_Night:
+
+                break;
+        }
     }
 
     public void AddScore(int score = 1)
     {
-
+        _score.AddScore(score);
     }
 }

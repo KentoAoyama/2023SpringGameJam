@@ -14,6 +14,10 @@ public class TimeSystem
     [SerializeField]
     private float _nightTime = 20f;
 
+    [Header("デバッグ用")]
+    [SerializeField]
+    private float _time = 0f;
+
     /// <summary>
     /// 朝の時間のプロパティ
     /// </summary>
@@ -29,6 +33,15 @@ public class TimeSystem
     /// </summary>
     public float NightTime => _nightTime;
 
-    private float _time = 0f;
+    public void Initialize()
+    {
+        _time = 0f;
+    }
 
+    public void AddTime()
+    {
+        _time += Time.deltaTime;
+
+
+    }
 }
