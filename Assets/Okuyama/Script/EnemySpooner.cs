@@ -20,8 +20,10 @@ public class EnemySpooner : MonoBehaviour
     private float _totalWeight = 0f;
     private int _enemyCount = 0;//Œ»Ý‚Ì“G‚Ì”
     private int _enemyTotal = 10;//‘”
+    private int _subtraction = -1;
 
     public int EnemyCount { get => _enemyCount; set => _enemyCount = value; }
+    public int Subtraction { get => _subtraction; set => _subtraction = value; }
 
     void Start()
     {
@@ -59,6 +61,7 @@ public class EnemySpooner : MonoBehaviour
         var index = Random.Range(0, _enemyPos.Length);
         var obj = Instantiate(_enemys[PramProbability()], _enemyPos[index].transform);
         obj.GetComponent<Enemy>().EnemySpooner = this;
+        obj.GetComponent<Enemy>().GameManager = _gameManager;
         _enemyCount++;
     }
 
