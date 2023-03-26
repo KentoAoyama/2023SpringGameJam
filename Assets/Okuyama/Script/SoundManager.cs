@@ -15,11 +15,13 @@ public class SoundManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        GetComponent<AudioSource>();
+        _audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     private void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
+        
     }
 
     public void Play(int type, int num)
