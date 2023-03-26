@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
         InGame_Morning,
         InGame_Noon,
         InGame_Night,
-        Result,
 
         InGame = InGame_Morning | InGame_Noon | InGame_Night
     }
@@ -23,6 +22,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private FadeSystem _fade;
+
+    /// <summary>
+    /// ŠÔ‚ÌŠÇ—‚ğ‚·‚éƒNƒ‰ƒX
+    /// </summary>
+    public TimeSystem Timer => _timer;
 
     private InGameState _state;
 
