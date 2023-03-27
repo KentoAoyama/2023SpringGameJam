@@ -141,14 +141,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameManager: {fileID: 0}
-  _time: 1
+  _time: 1.5
   _enemys:
   - {fileID: 6119620802111533171, guid: 33507e588e0e6544aab46575b11fd472, type: 3}
   - {fileID: 4000269569967759280, guid: 5b2d52a245955534a8861dd058a0f18e, type: 3}
   - {fileID: 7433599089879068545, guid: 9741aee740263f945aff45397d4aab14, type: 3}
   - {fileID: 7796495629897737608, guid: 0f184ad8a8b7fd34a91e34f4430dfbd3, type: 3}
   - {fileID: 8099382093828320018, guid: 53d818d5ca54fde479a5d6825260d75c, type: 3}
-  - {fileID: 286628718550115908, guid: 5394eceebb0604e4fa890e1719c4ae4f, type: 3}
+  - {fileID: 6024887883132104157, guid: 7d8f3ad7db652a448b8d8246b6a792ac, type: 3}
   - {fileID: 53547340356316451, guid: f86230298661a4342948d6d4c364fd1e, type: 3}
   - {fileID: 6357173080995383095, guid: 254dfcc3412b45941977d79a9b29db30, type: 3}
   - {fileID: 3246453767528061606, guid: f2a7aa38c2bb5004abbcd8f7afbd85e5, type: 3}
@@ -196,3 +196,4 @@ MonoBehaviour:
   - {fileID: 2511834645681624361}
   - {fileID: 2511834644783083500}
   _timeEnemyTotal: 050000000a0000000f000000
+  _addScore: 5
