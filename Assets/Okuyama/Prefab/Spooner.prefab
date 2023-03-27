@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &930591952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 930591953}
+  m_Layer: 0
+  m_Name: GameObject (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &930591953
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930591952}
+  m_LocalRotation: {x: 0, y: -0.9396926, z: 0, w: 0.34202018}
+  m_LocalPosition: {x: 16.55, y: 2, z: 25.84}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2511834646416957422}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: -140, z: 0}
 --- !u!1 &2511834644601404228
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,6 +156,7 @@ Transform:
   - {fileID: 2511834644601404229}
   - {fileID: 2511834645681624366}
   - {fileID: 2511834644783083501}
+  - {fileID: 930591953}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -141,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameManager: {fileID: 0}
-  _time: 1.5
+  _time: 0.5
   _enemys:
   - {fileID: 6119620802111533171, guid: 33507e588e0e6544aab46575b11fd472, type: 3}
   - {fileID: 4000269569967759280, guid: 5b2d52a245955534a8861dd058a0f18e, type: 3}
@@ -195,5 +227,6 @@ MonoBehaviour:
   - {fileID: 2511834644601404228}
   - {fileID: 2511834645681624361}
   - {fileID: 2511834644783083500}
-  _timeEnemyTotal: 050000000a0000000f000000
-  _addScore: 5
+  - {fileID: 930591952}
+  _timeEnemyTotal: 0f0000001e00000032000000
+  _addScore: 20

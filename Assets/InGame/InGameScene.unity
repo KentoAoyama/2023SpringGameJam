@@ -27174,6 +27174,10 @@ PrefabInstance:
       value: Spooner
       objectReference: {fileID: 0}
     - target: {fileID: 2511834646416957417, guid: 4f7adc6bfa5b767489358ebc8d64d126, type: 3}
+      propertyPath: _addScore
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2511834646416957417, guid: 4f7adc6bfa5b767489358ebc8d64d126, type: 3}
       propertyPath: _gameManager
       value: 
       objectReference: {fileID: 450497047}
