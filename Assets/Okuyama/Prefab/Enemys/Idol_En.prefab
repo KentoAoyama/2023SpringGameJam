@@ -77,10 +77,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5c8559558fa69e40a587b47e5f42fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 8
+  _speed: 10
   _effect: {fileID: 198656289721292014, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
-  _dsPos: -15
-  _bomForce: 20
+  _dsPos: -10
+  _bomForce: 30
   _bomRadius: 1
   _bomUpwards: 5
 --- !u!1 &53547340529096372
