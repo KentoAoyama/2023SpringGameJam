@@ -37,7 +37,8 @@ public class EnemySpooner : MonoBehaviour
     void Start()
     {
         Weight();
-        InvokeRepeating("EnemyPop", 0, _time);
+        InvokeRepeating("EnemyRandm", 0, _time);
+        Debug.Log($"{_sceneWeight[_nowPos]._enemyPopWeight[_nowPos]}");
     }
 
     
@@ -48,15 +49,17 @@ public class EnemySpooner : MonoBehaviour
             case GameManager.InGameState.InGame_Morning:
                 _enemyTotal = _timeEnemyTotal[0];
                 _nowPos = 0;
+                Weight();
                 break;
             case GameManager.InGameState.InGame_Noon:
                 _enemyTotal = _timeEnemyTotal[1];
                 _nowPos = 1;
-
+                Weight();
                 break;
             case GameManager.InGameState.InGame_Night:
                 _enemyTotal = _timeEnemyTotal[2];
                 _nowPos = 2;
+                Weight();
                 break;
         }
         
@@ -67,6 +70,7 @@ public class EnemySpooner : MonoBehaviour
     /// </summary>
     private void Weight()
     {
+        _totalWeight = 0;
         for (var i = 0; i < _sceneWeight[_nowPos]._enemyPopWeight.Length; i++)
         {
             _totalWeight += _sceneWeight[_nowPos]._enemyPopWeight[i];
@@ -82,6 +86,7 @@ public class EnemySpooner : MonoBehaviour
         if (EnemyCount >= _enemyTotal) { return; }
         var index = UnityEngine.Random.Range(0, _enemyPos.Length);
         var num = PramProbability();
+        Debug.Log($"num:{num},index:{index}");
         if(num == _enemys.Length)
         {
             Instantiate(_enemys[num]);
@@ -93,6 +98,7 @@ public class EnemySpooner : MonoBehaviour
     private void EnemyPop(int num, int index)
     {
         var obj = Instantiate(_enemys[num], _enemyPos[index].transform);
+        if (obj.GetComponent<Enemy>() == null) { return; }
         obj.GetComponent<Enemy>().EnemySpooner = this;
         obj.GetComponent<Enemy>().GameManager = _gameManager;
         obj.GetComponent<Enemy>().AddScore = _addScore;
@@ -104,11 +110,12 @@ public class EnemySpooner : MonoBehaviour
     /// </summary>
     int PramProbability()
     {
+        Debug.Log($"total{_totalWeight}");
         var randomPoint = UnityEngine.Random.Range(0, _totalWeight);
 
         // óêêîílÇ™ëÆÇ∑ÇÈóvëfÇêÊì™Ç©ÇÁèáÇ…ëIë
         var currentWeight = 0f;
-        for (var i = 0; i < _sceneWeight.Length; i++)
+        for (var i = 0; i < _sceneWeight[_nowPos]._enemyPopWeight.Length; i++)
         {
             // åªç›óvëfÇ‹Ç≈ÇÃèdÇ›ÇÃëçòaÇãÅÇﬂÇÈ
             currentWeight += _sceneWeight[_nowPos]._enemyPopWeight[i];

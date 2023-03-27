@@ -21,7 +21,7 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        
+        Play(0, 0);
     }
 
     public void Play(int type, int num)
