@@ -88,9 +88,7 @@ public class GameManager : MonoBehaviour
         if (_isInGame)
         {
             _timer.AddTime();
-            UpdateGUI();
-
-            
+            UpdateGUI();    
         }
 
         switch(_state)
@@ -120,6 +118,7 @@ public class GameManager : MonoBehaviour
                 break;
             case InGameState.InGame_Night: //–é‚ÌŽžŠÔ‚És‚¤ˆ—
 
+                _uiController.Warning();
                 if (_timer.CurrentTime > _timer.NightTime)
                 {
                     ChangeState(InGameState.Finish);

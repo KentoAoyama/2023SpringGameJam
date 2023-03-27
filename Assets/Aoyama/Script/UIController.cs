@@ -15,7 +15,7 @@ public class UIController : MonoBehaviour
     private Text _titleText;
 
     [SerializeField]
-    private Text _helpText;
+    private Graphic _helpImage;
 
     [SerializeField]
     private float _titleAnimationDuration = 1f;
@@ -49,6 +49,13 @@ public class UIController : MonoBehaviour
     [SerializeField]
     private Graphic[] _camera;
 
+    [SerializeField]
+    private Graphic _warningPanel;
+
+    [Range(0f, 1f)]
+    [SerializeField]
+    private float _waringPanelAlpha = 0.2f;
+
     [Header("ゲーム終了時に使用するもの")]
     [SerializeField]
     private Text _finishText;
@@ -56,6 +63,11 @@ public class UIController : MonoBehaviour
     private int _beforeChangeCamera = 0;
 
     private float _score;
+
+    /// <summary>
+    /// Warningの処理が連続で呼ばれないようにするための変数
+    /// </summary>
+    private bool _isCheckWorning = false;
 
     /// <summary>
     /// Finish時の処理が連続で呼ばれないようにする
@@ -81,10 +93,10 @@ public class UIController : MonoBehaviour
         yield return sequence
             .Insert(0f, _titleLogo.rectTransform.DOScale(0f, 0f))
             .Insert(0f, _titleText.rectTransform.DOScale(0f, 0f))
-            .Insert(0f, _helpText.rectTransform.DOScale(0f, 0f))
+            .Insert(0f, _helpImage.rectTransform.DOScale(0f, 0f))
             .Insert(_titleAnimationDuration, _titleLogo.rectTransform.DOScale(1f, _titleAnimationDuration).SetEase(_titleLogoEase))
             .Insert(_titleAnimationDuration, _titleText.rectTransform.DOScale(1f, _titleAnimationDuration).SetEase(_titleLogoEase))
-            .Insert(_titleAnimationDuration, _helpText.rectTransform.DOScale(1f, _titleAnimationDuration).SetEase(_titleLogoEase))
+            .Insert(_titleAnimationDuration, _helpImage.rectTransform.DOScale(1f, _titleAnimationDuration).SetEase(_titleLogoEase))
             .OnComplete(() => _titleText.rectTransform.DOMoveY(150f, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(_loopEase))
             .WaitForCompletion();
     }
@@ -99,13 +111,21 @@ public class UIController : MonoBehaviour
         sequence
             .Insert(0f, _titleLogo.DOFade(0f, _titleFadeDuration))
             .Insert(0f, _titleText.DOFade(0f, _titleFadeDuration))
-            .Insert(0f, _helpText.DOFade(0f, _titleFadeDuration));
+            .Insert(0f, _helpImage.DOFade(0f, _titleFadeDuration));
 
         yield return new WaitForSeconds(1f);
 
         _ui.SetActive(true);
 
         ChangeScore(0f);
+    }
+
+    public void Warning()
+    {
+        if (_isCheckWorning) return; 
+
+        _warningPanel.DOFade(_waringPanelAlpha, 0.3f).SetLoops(6, LoopType.Yoyo);
+        _isCheckWorning = true;
     }
 
     public void ChangeTimeSlider(float value)
