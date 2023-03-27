@@ -16,6 +16,6 @@ public class Result : MonoBehaviour
 
     public void NextScene()
     {
-        SceneManager.CreateScene(_nextScene);
+        SceneManager.LoadScene(_nextScene);
     }
 }

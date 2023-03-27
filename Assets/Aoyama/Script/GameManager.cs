@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,6 +34,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private CinemachineVirtualCamera _cinemachine;
+
+    [SerializeField]
+    private UnityEvent _startEvent;
 
     [SerializeField]
     private string _finishText = "èIóπÅI";
@@ -150,6 +154,7 @@ public class GameManager : MonoBehaviour
         ChangeCameraUI(0);
         SunLightRotate();
         ChangeState(InGameState.InGame_Morning);
+        _startEvent.Invoke();
     }
 
     private void SunLightRotate()

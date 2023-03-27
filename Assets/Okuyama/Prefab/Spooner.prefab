@@ -109,7 +109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2511834646416957422
 Transform:
   m_ObjectHideFlags: 0
@@ -149,13 +149,28 @@ MonoBehaviour:
   - {fileID: 286628718550115908, guid: 5394eceebb0604e4fa890e1719c4ae4f, type: 3}
   - {fileID: 53547340356316451, guid: f86230298661a4342948d6d4c364fd1e, type: 3}
   - {fileID: 6357173080995383095, guid: 254dfcc3412b45941977d79a9b29db30, type: 3}
-  _enemyPopWeight:
-  - 0
-  - 0
-  - 100
-  - 0
-  - 0
-  - 100
+  _sceneWeight:
+  - _enemyPopWeight:
+    - 80
+    - 80
+    - 80
+    - 20
+    - 20
+    - 20
+  - _enemyPopWeight:
+    - 50
+    - 50
+    - 50
+    - 50
+    - 50
+    - 50
+  - _enemyPopWeight:
+    - 0
+    - 0
+    - 0
+    - 100
+    - 100
+    - 100
   _enemyPos:
   - {fileID: 2511834644601404228}
   - {fileID: 2511834645681624361}
