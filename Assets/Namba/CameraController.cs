@@ -21,24 +21,28 @@ public class CameraController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ResetPriority();
+            SoundManager.Instance.Play(1, 0);
             cameraPoints[0].Priority = 10;
             gameManager?.ChangeCameraUI(0);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             ResetPriority();
+            SoundManager.Instance.Play(1, 0);
             cameraPoints[1].Priority = 10;
             gameManager?.ChangeCameraUI(1);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             ResetPriority();
+            SoundManager.Instance.Play(1, 0);
             cameraPoints[2].Priority = 10;
             gameManager?.ChangeCameraUI(2);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             ResetPriority();
+            SoundManager.Instance.Play(1, 0);
             cameraPoints[3].Priority = 10;
             gameManager?.ChangeCameraUI(3);
         }
