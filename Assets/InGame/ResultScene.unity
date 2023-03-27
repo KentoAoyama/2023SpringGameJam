@@ -849,7 +849,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _score: {fileID: 1354850869}
-  _nextScene: 
+  _nextScene: InGameScene
 --- !u!4 &1861136338
 Transform:
   m_ObjectHideFlags: 0
