@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     
     [SerializeField, Tooltip("スピード")]
-    private float _speed = 1.0f;
+    private float _speed = 5.0f;
     [SerializeField, Tooltip("爆発エフェクト")]
     private ParticleSystem _effect = null;
     [SerializeField, Tooltip("消すときのPos")]
@@ -33,8 +33,7 @@ public class Enemy : MonoBehaviour
         _subtraction = _enemySpooner.Subtraction;
     }
 
-    
-    void Update()
+    private void FixedUpdate()
     {
         transform.position += transform.forward * _speed;
         if(this.gameObject.transform.forward.z <= _dsPos)
@@ -42,9 +41,8 @@ public class Enemy : MonoBehaviour
             EnemySpooner.EnemyCount--;
             gameObject.SetActive(false);
         }
-        
-    }
 
+    }
     public void EnemyBom()
     {
         _myPS = Instantiate(_effect,gameObject.transform);
@@ -61,12 +59,13 @@ public class Enemy : MonoBehaviour
         _myPS.Play();
         SoundManager.Instance.Play(1, 1);
         _rb.AddExplosionForce(_bomForce, gameObject.transform.position, _bomRadius, _bomUpwards, ForceMode.Impulse);
-        StartCoroutine(destroy());
+        StartCoroutine(Destroy());
     }
-    IEnumerator destroy()
+
+    IEnumerator Destroy()
     {
         yield return new WaitForSeconds(2);
-        gameObject.SetActive(false);
-        _myPS.gameObject.SetActive(false);
+        Destroy(gameObject);
+        Destroy(_myPS);
     }
 }
