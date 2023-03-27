@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
     private FadeSystem _fade;
 
     [SerializeField]
+    private SunLightController _light;
+
+    [SerializeField]
     private UIController _uiController;
 
     [SerializeField]
@@ -34,15 +37,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private string _finishText = "終了！";
 
-    /// <summary>
-    /// 時間の管理をするクラス
-    /// </summary>
-    public TimeSystem Timer => _timer;
-
-    /// <summary>
-    /// スコアの管理をするクラス
-    /// </summary>
-    public ScoreSystem Score => _score;
+    
 
     private InGameState _state;
 
@@ -81,12 +76,14 @@ public class GameManager : MonoBehaviour
         {
             _timer.AddTime();
             UpdateGUI();
+
+            
         }
 
         switch(_state)
         {
             case InGameState.Title:
-                if (Input.GetMouseButtonDown(1)) //ボタンを押したらゲーム開始（仮）
+                if (Input.GetMouseButtonDown(0)) //ボタンを押したらゲーム開始（仮）
                 {
                     StartCoroutine(GameStart());
                 }
@@ -143,7 +140,14 @@ public class GameManager : MonoBehaviour
 
         yield return _uiController.GameStart();
 
+        ChangeCameraUI(0);
+        SunLightRotate();
         ChangeState(InGameState.InGame_Morning);
+    }
+
+    private void SunLightRotate()
+    {
+        _light.RotateLight(_timer.AllTime);
     }
 
     private IEnumerator GameOver()
