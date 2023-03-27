@@ -68,6 +68,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        SoundManager.Instance.Play(0, 0);
+
         ChangeState(InGameState.WaitStart);
         Initialize();
     }

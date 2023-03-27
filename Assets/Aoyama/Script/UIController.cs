@@ -57,6 +57,11 @@ public class UIController : MonoBehaviour
 
     private float _score;
 
+    /// <summary>
+    /// Finish‚Ìˆ—‚ª˜A‘±‚ÅŒÄ‚Î‚ê‚È‚¢‚æ‚¤‚É‚·‚é
+    /// </summary>
+    private bool _isCheck = false;
+
     public void Initialize()
     {
         if (_camera.Length != 0)
@@ -152,6 +157,13 @@ public class UIController : MonoBehaviour
 
     public void Finish(string text)
     {
+        if (_isCheck) return;
+
         _finishText.text = text;
+
+        _finishText.rectTransform.DOScale(1f, 0.5f).SetEase(Ease.OutElastic);
+        _finishText.DOFade(1f, _titleFadeDuration);
+
+        _isCheck = true;
     }
 }
