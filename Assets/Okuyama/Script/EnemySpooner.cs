@@ -98,6 +98,7 @@ public class EnemySpooner : MonoBehaviour
     private void EnemyPop(int num, int index)
     {
         var obj = Instantiate(_enemys[num], _enemyPos[index].transform);
+        if (obj.GetComponent<Enemy>() == null) { return; }
         obj.GetComponent<Enemy>().EnemySpooner = this;
         obj.GetComponent<Enemy>().GameManager = _gameManager;
         obj.GetComponent<Enemy>().AddScore = _addScore;
