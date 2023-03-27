@@ -20,9 +20,11 @@ public class Enemy : MonoBehaviour
     private Rigidbody _rb = default;
     private int _subtraction = 0;
     private ParticleSystem _myPS = null;
+    private int _addScore = 1;
 
     public EnemySpooner EnemySpooner { get => _enemySpooner; set => _enemySpooner = value; }
     public GameManager GameManager { get => _gameManager; set => _gameManager = value; }
+    public int AddScore { get => _addScore; set => _addScore = value; }
 
     void Start()
     {
@@ -47,7 +49,7 @@ public class Enemy : MonoBehaviour
     {
         _myPS = Instantiate(_effect,gameObject.transform);
         _myPS.gameObject.transform.parent = null;
-        if (this.gameObject.CompareTag("DarkEnemy")) { GameManager.AddScore(); }
+        if (this.gameObject.CompareTag("DarkEnemy")) { GameManager.AddScore(AddScore); }
         else { GameManager.AddScore(_subtraction); }
         Explosion();
         EnemySpooner.EnemyCount--;
