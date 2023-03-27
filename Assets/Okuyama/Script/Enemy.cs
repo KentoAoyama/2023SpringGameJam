@@ -63,7 +63,8 @@ public class Enemy : MonoBehaviour
     }
     IEnumerator destroy()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         gameObject.SetActive(false);
+        _myPS.gameObject.SetActive(false);
     }
 }
