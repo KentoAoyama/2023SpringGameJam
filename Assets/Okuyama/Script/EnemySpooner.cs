@@ -75,11 +75,22 @@ public class EnemySpooner : MonoBehaviour
     /// <summary>
     /// Enemyê∂ê¨
     /// </summary>
-    private void EnemyPop()
+    private void EnemyRandm()
     {
         if (EnemyCount >= _enemyTotal) { return; }
         var index = UnityEngine.Random.Range(0, _enemyPos.Length);
-        var obj = Instantiate(_enemys[PramProbability()], _enemyPos[index].transform);
+        var num = PramProbability();
+        if(num == _enemys.Length)
+        {
+            Instantiate(_enemys[num]);
+            return;
+        }
+        EnemyPop(num, index);
+    }
+
+    private void EnemyPop(int num, int index)
+    {
+        var obj = Instantiate(_enemys[num], _enemyPos[index].transform);
         obj.GetComponent<Enemy>().EnemySpooner = this;
         obj.GetComponent<Enemy>().GameManager = _gameManager;
         _enemyCount++;
