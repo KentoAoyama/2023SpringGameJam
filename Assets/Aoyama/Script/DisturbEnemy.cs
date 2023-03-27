@@ -37,7 +37,6 @@ public class DisturbEnemy : MonoBehaviour
             .Play()
             .OnComplete(() =>
             {
-                Debug.Log(_defaultPos);
                 Destroy(gameObject);
             });       
     }

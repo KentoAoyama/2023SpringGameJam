@@ -26,6 +26,9 @@ public class UIController : MonoBehaviour
     [SerializeField]
     private Ease _titleLogoEase;
 
+    [SerializeField]
+    private Ease _loopEase;
+
     [Header("インゲームで使用するもの")]
 
     [SerializeField]
@@ -77,6 +80,7 @@ public class UIController : MonoBehaviour
             .Insert(_titleAnimationDuration, _titleLogo.rectTransform.DOScale(1f, _titleAnimationDuration).SetEase(_titleLogoEase))
             .Insert(_titleAnimationDuration, _titleText.rectTransform.DOScale(1f, _titleAnimationDuration).SetEase(_titleLogoEase))
             .Insert(_titleAnimationDuration, _helpText.rectTransform.DOScale(1f, _titleAnimationDuration).SetEase(_titleLogoEase))
+            .OnComplete(() => _titleText.rectTransform.DOMoveY(150f, 0.5f).SetLoops(-1, LoopType.Yoyo).SetEase(_loopEase))
             .WaitForCompletion();
     }
 
