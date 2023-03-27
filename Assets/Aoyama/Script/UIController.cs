@@ -44,9 +44,6 @@ public class UIController : MonoBehaviour
     private Text _scoreText;
 
     [SerializeField]
-    private GameObject _cameras;
-
-    [SerializeField]
     private Graphic[] _camera;
 
     [SerializeField]
