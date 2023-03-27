@@ -37,7 +37,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private string _finishText = "終了！";
 
-    
+    [Header("リザルトのシーンの名前")]
+    [SerializeField]
+    private string _resultSceneName = "ResultScene";
+
+    /// <summary>
+    /// リザルトで使用する用のStatic変数
+    /// </summary>
+    public static int Score;
 
     private InGameState _state;
 
@@ -156,7 +163,9 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(_timer.FinishInterval);
 
-        _fade.StartFadeOut("");
+        //リザルトにスコアを送るため値を変数に格納
+        Score = _score.Score;
+        _fade.StartFadeOut(_resultSceneName);
     }
 
     /// <summary>
