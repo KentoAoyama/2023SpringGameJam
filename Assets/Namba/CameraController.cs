@@ -10,19 +10,12 @@ public class CameraController : MonoBehaviour
     [SerializeField] GameManager gameManager;
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] List<LineRenderer> lineRenderers;
-    [SerializeField] float nonVisibleTime;
     LineRenderer manipulateLineRenderer;
 
     Ray ray;
     RaycastHit hit;
-    float rayLength = 100f;
+    float rayLength = 1000f;
 
-
-    private void Awake()
-    {
-        //cameraPoints[0].Priority = 1;
-        //gameManager.ChangeCameraUI(0);
-    }
     public void ChangeCamera()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -61,8 +54,11 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        ChangeCamera();
-        CameraRay();
+        if (gameManager.State != GameManager.InGameState.Finish)
+        {
+            ChangeCamera();
+            CameraRay();
+        }
     }
 
     private void CameraRay()
@@ -88,9 +84,8 @@ public class CameraController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, rayLength, enemyLayer))
             {
-                //è’ìÀèàóù
                 manipulateLineRenderer.SetPosition(1, hit.point);
-
+                Debug.Log("fire");
                 var enemy = hit.collider.GetComponent<Enemy>();
                 enemy.EnemyBom();
             }
@@ -99,7 +94,21 @@ public class CameraController : MonoBehaviour
 
     IEnumerator NonVisibleLine(LineRenderer lineRenderer)
     {
-        yield return new WaitForSeconds(nonVisibleTime);
+        float alpha1 = 1f;
+        float alpha2 = 1f;
+
+        Gradient gradient = new Gradient();
+
+        for (float i = 1; i > 0; i -= 0.1f)
+        {
+            alpha1 = i;
+            alpha2 = i * 1.2f;
+            gradient.SetKeys(
+            new GradientColorKey[] { new GradientColorKey(Color.white, 0), new GradientColorKey(Color.white, 1) },
+            new GradientAlphaKey[] { new GradientAlphaKey(alpha1, 0), new GradientAlphaKey(alpha2, 1) });
+            lineRenderer.colorGradient = gradient;
+            yield return new WaitForSeconds(.1f);
+        }
         lineRenderer.enabled = false;
     }
 }
