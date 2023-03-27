@@ -10,8 +10,6 @@ public class CameraController : MonoBehaviour
     [SerializeField] GameManager gameManager;
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] List<LineRenderer> lineRenderers;
-    [Range(0f, 1f)]
-    [SerializeField] float nonVisibleTime;
     LineRenderer manipulateLineRenderer;
 
     Ray ray;
