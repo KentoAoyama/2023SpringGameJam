@@ -85,7 +85,6 @@ public class CameraController : MonoBehaviour
             if (Physics.Raycast(ray, out hit, rayLength, enemyLayer))
             {
                 manipulateLineRenderer.SetPosition(1, hit.point);
-                Debug.Log("fire");
                 var enemy = hit.collider.GetComponent<Enemy>();
                 enemy.EnemyBom();
             }
