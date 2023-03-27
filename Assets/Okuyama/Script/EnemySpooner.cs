@@ -22,6 +22,8 @@ public class EnemySpooner : MonoBehaviour
     private GameObject[] _enemyPos = null;
     [SerializeField, Header("ŠÔ‘Ñ‚²‚Æ‚Ì‘”")]
     private int [] _timeEnemyTotal = default;
+    [SerializeField]
+    private int _addScore = 1;
 
     private float _totalWeight = 0f;
     private int _enemyCount = 0;//Œ»İ‚Ì“G‚Ì”
@@ -93,6 +95,7 @@ public class EnemySpooner : MonoBehaviour
         var obj = Instantiate(_enemys[num], _enemyPos[index].transform);
         obj.GetComponent<Enemy>().EnemySpooner = this;
         obj.GetComponent<Enemy>().GameManager = _gameManager;
+        obj.GetComponent<Enemy>().AddScore = _addScore;
         _enemyCount++;
     }
 
