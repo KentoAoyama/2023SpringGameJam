@@ -31511,14 +31511,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManger
       objectReference: {fileID: 0}
-    - target: {fileID: 6996791872193702161, guid: d67ae1b7db9c57c42b2996bbe7c725c5, type: 3}
-      propertyPath: _BGM.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6996791872193702161, guid: d67ae1b7db9c57c42b2996bbe7c725c5, type: 3}
-      propertyPath: _BGM.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: ebd071029177ec141a88d8e58eefb66e, type: 3}
     - target: {fileID: 6996791872193702167, guid: d67ae1b7db9c57c42b2996bbe7c725c5, type: 3}
       propertyPath: m_RootOrder
       value: 9

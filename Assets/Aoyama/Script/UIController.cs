@@ -122,6 +122,7 @@ public class UIController : MonoBehaviour
         if (_isCheckWorning) return; 
 
         _warningPanel.DOFade(_waringPanelAlpha, 0.3f).SetLoops(6, LoopType.Yoyo);
+        SoundManager.Instance.Play(0, 2);
         _isCheckWorning = true;
     }
 
