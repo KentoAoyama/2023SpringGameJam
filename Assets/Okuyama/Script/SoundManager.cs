@@ -31,6 +31,7 @@ public class SoundManager : MonoBehaviour
             case 0:
                 _audioSource.clip = _BGM[num];
                 _audioSource.Play();
+                _audioSource.loop = true;
                 break;
             case 1:
                 _audioSource.PlayOneShot(_SE[num]);

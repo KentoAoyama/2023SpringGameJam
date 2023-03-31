@@ -146,12 +146,13 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void ChangeScore(float addScore)
     {
-        float endValue = _score + addScore;
+        var score = _score;
+        _score += addScore;
 
         DOTween.To(
-            () => _score,
-            (s) => _score = s,
-            endValue,
+            () => score,
+            (s) => score = s,
+            _score,
             1f);
     }
 

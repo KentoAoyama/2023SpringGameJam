@@ -76,6 +76,8 @@ public class GameManager : MonoBehaviour
 
     private void Initialize()
     {
+        Score = 0;
+
         _score.Initialize();
         _uiController.Initialize();
         if (_fade) _fade.StartFadeIn();

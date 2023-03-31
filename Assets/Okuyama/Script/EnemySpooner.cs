@@ -28,6 +28,7 @@ public class EnemySpooner : MonoBehaviour
     private float _totalWeight = 0f;
     private int _enemyCount = 0;//Œ»İ‚Ì“G‚Ì”
     private int _enemyTotal = 10;//‘”
+    [SerializeField]
     private int _subtraction = -1;
     private int _nowPos = 0;
 

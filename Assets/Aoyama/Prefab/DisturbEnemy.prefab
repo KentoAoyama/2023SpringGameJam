@@ -136,7 +136,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!114 &7541118018102735030
 MonoBehaviour:
@@ -193,5 +193,5 @@ MonoBehaviour:
   _movePos: {x: 0, y: -300, z: 0}
   _transform: {fileID: 2116004449}
   _moveInterval: 1
-  _stayDuration: 5
+  _stayDuration: 3
   _ease: 0
